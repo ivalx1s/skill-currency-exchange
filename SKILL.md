@@ -2,6 +2,33 @@
 
 > Currency exchange calculator CLI: AMD <-> RUB with real cash rates from Armenian exchange offices.
 
+## When Triggered (MANDATORY)
+
+When the user asks to exchange/convert currencies (AMD, RUB, драмы, рубли, rate.am, etc.):
+
+1. **ALWAYS use the `exchange` CLI tool** — NEVER scrape rate sources manually, NEVER use WebFetch.
+2. Map the user's request to CLI flags:
+   - "поменять драмов на рубли" / "give AMD, get RUB" → `--give amd=<amount>`
+   - "поменять рублей на драмы" / "give RUB, get AMD" → `--give rub=<amount>`
+   - "хочу получить X рублей" → `--get rub=<amount>`
+   - "по курсу раттам" / "rate.am" → `--ratam`
+   - "раттам среднему" / "mid-market rate.am" → `--ratam --avg`
+   - "по гуглу" / "google rate" → `--google`
+   - "среднему по гуглу" → `--google --avg`
+   - "комиссия 0.3%" → `--tax=-0.003`
+   - "бонус 0.3%" → `--tax=0.003`
+   - "курс 4.82" / "manual rate" → `--rate 4.82`
+3. Run the command via Bash and show the output.
+
+### Examples
+
+| User says | CLI command |
+|-----------|-------------|
+| "поменять 25к рублей на драмы по раттам среднему, комиссия 0.3%" | `exchange --give rub=25000 --ratam --avg --tax=-0.003` |
+| "хочу получить 10к рублей, курс гугл" | `exchange --get rub=10000 --google` |
+| "50к драмов в рубли по курсу 0.205" | `exchange --give amd=50000 --rate 0.205` |
+| "25к рублей по раттам кеш" | `exchange --give rub=25000 --ratam` |
+
 ## Project Overview
 
 Swift CLI tool (`exchange`) for currency conversion between AMD (Armenian Dram) and RUB (Russian Ruble). Fetches real cash exchange rates from rate.am or mid-market rates from Google, supports manual rate input. macOS native binary using WebKit for headless page scraping.
