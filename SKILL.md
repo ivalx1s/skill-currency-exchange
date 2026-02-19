@@ -1,3 +1,17 @@
+---
+name: currency-exchange
+description: >
+  Currency exchange calculator CLI workflow for AMD/RUB conversions using
+  real cash rates and the local `exchange` command.
+triggers:
+  - currency exchange
+  - exchange cli
+  - amd rub
+  - rate.am
+  - поменять драмы
+  - поменять рубли
+---
+
 # Exchange CLI — Project Skill
 
 > Currency exchange calculator CLI: AMD <-> RUB with real cash rates from Armenian exchange offices.
